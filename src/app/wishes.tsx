@@ -87,7 +87,7 @@ function Wishes() {
     <>
       <div id="party-info">
         <div className='buttons'>
-          <Button className='button' color="error" variant="contained" startIcon={<YouTubeIcon />} >
+          <Button className='button' color="error" variant="contained" startIcon={<YouTubeIcon />} href='https://www.youtube.com/live/hnoEvdm92DI?si=nc15faikh8hF9FeO' >
             Watch Live
           </Button>
           <Button className='button' color="info" variant="contained" startIcon={<LocationOnIcon />} href='https://maps.app.goo.gl/Bh53M7XzZsi4cM3b6'>
