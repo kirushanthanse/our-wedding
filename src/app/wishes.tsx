@@ -80,7 +80,7 @@ function Wishes() {
           </Button>
         </div>
         <div className='picture'>
-          <img className="bd-placeholder-img rounded-circle us-img" width="220" height="220" src='./og.jpg' alt='couple picture'/>
+          <img className="bd-placeholder-img rounded-circle us-img" width="220" height="220" src='./us.jpg' alt='couple picture'/>
         </div>
         <div className='text'>
           <h2 id='h2'>SAVE THE DATE ❤️</h2>
