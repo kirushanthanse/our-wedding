@@ -1,17 +1,19 @@
 "use client"
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import Confetti from 'react-confetti'
-import { Alert, Button, Snackbar, TextField } from '@mui/material'
+import { Alert, Button, CircularProgress, Snackbar, TextField } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import 'react-toastify/dist/ReactToastify.css';
+import { LoadingButton } from '@mui/lab';
 
 
 function Wishes() {
   const [message, setMessage] = useState<string>('');
   const [error, setError] = useState(false);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading]=useState(false);
   const [mailApiResponse, setMailApiResponse] = useState<boolean>(false);
   const [windowSize, setWindowSize] = useState<{ width: any; height: any }>({
     width: window.innerWidth,
@@ -30,26 +32,7 @@ function Wishes() {
   useEffect(() => {
     window.onresize = () => handleWindowSize();
   })
-//---------------------------------------------------------------------
-// const windowObj = useMemo(
-//   () => ({
-//     width: typeof window !== "undefined" && window.innerWidth,
-//     height: typeof window !== "undefined" && window.innerHeight,
-//   }),
-//   []
-// );
 
-// const [windowDimension, setWindowDimension] = useState(windowObj);
-
-// const detectSize = useCallback(
-//   () => setWindowDimension(windowObj),
-//   [windowObj]
-// );
-// useEffect(() => {
-//   window.addEventListener("resize", detectSize);
-//   return () => window.removeEventListener("resize", detectSize);
-// }, [windowDimension, detectSize]);
-//--------------------------------------------------------------------
   const handleSubmit = async (values: any) => {
     values.preventDefault();
     console.log(values);
@@ -58,6 +41,7 @@ function Wishes() {
       // setMailApiResponse(false);
     
     } else {
+      setLoading(true)
       const response = await fetch('/api/sendMail', {
         method: 'POST',
         headers: {
@@ -79,6 +63,7 @@ function Wishes() {
       } else {
         setMailApiResponse(false)
       }
+      setLoading(false)
       setOpen(true)
     } 
   }
@@ -105,9 +90,9 @@ function Wishes() {
         </div>
         <div className="form-group mx-sm-3 mb-1 mt-1 wish">
           <TextField value={message} onFocus={() => setError(false)} error={error} helperText={error ? 'The message field is empty' : null} id="outlined-basic" label="Type your greetings.." variant="outlined" size="small" sx={{ mt: -2 }} onChange={(e) => setMessage(e.target.value)} />
-          <Button className='button' size="small" variant="outlined" color="success" startIcon={<FavoriteIcon />} onClick={handleSubmit} >
+          <LoadingButton loading={loading} loadingIndicator={<CircularProgress color="info" size={12} role='Sending..' />} className='button' size="small" variant="outlined" color="success" startIcon={<FavoriteIcon />} onClick={handleSubmit} >
             Send
-          </Button>
+          </LoadingButton>
         </div>
       </div>
 
