@@ -13,6 +13,7 @@ body {
    /* overflow: hidden; */
    overflow: scroll;
    display: flex;
+   overflow-x: hidden;
    
 } 
 
