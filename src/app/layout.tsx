@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.css'
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+const Poppins_init= Poppins({
+subsets:['latin'],
+weight:['100','200','300','400'],
+style: ["normal", "italic"]
+})
 
 export const metadata: Metadata = {
   title: "Kirushanthan & Abirami",
@@ -16,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} main-body` } >{children}</body>
+      <body className={`${Poppins_init.className} main-body` } >{children}</body>
     </html>
   );
 }
