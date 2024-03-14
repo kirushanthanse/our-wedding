@@ -95,7 +95,7 @@ function Wishes() {
           </Button>
         </div>
         <div className='picture'>
-          <img className="bd-placeholder-img rounded-circle us-img" width="220" height="220" src='./us.jpg' alt='couple picture'/>
+          <img className="bd-placeholder-img rounded-circle us-img" width="220" height="220" src='./og.jpg' alt='couple picture'/>
         </div>
         <div className='text'>
           <h2 id='h2'>SAVE THE DATE ❤️</h2>
@@ -104,7 +104,7 @@ function Wishes() {
           <p >Join us as we embark on a journey of love and joy. Your presence is requested as we celebrate the union of our hearts in matrimony.</p>
         </div>
         <div className="form-group mx-sm-3 mb-1 mt-1 wish">
-          <TextField value={message} onFocus={() => setError(false)} error={error} helperText={error ? 'The message field is empty' : null} id="outlined-basic" label="Type your name & wishes.." variant="outlined" size="small" sx={{ mt: -2 }} onChange={(e) => setMessage(e.target.value)} />
+          <TextField value={message} onFocus={() => setError(false)} error={error} helperText={error ? 'The message field is empty' : null} id="outlined-basic" label="Type your greetings.." variant="outlined" size="small" sx={{ mt: -2 }} onChange={(e) => setMessage(e.target.value)} />
           <Button className='button' size="small" variant="outlined" color="success" startIcon={<FavoriteIcon />} onClick={handleSubmit} >
             Send
           </Button>
@@ -123,7 +123,7 @@ function Wishes() {
           variant="filled"
           sx={{ width: '100%' }} 
         >
-          {mailApiResponse? 'Your wishes has been sent successfully':'Something went wrong try again later'}
+          {mailApiResponse? 'Your greetings has been sent successfully':'Something went wrong try again later'}
         </Alert>
       </Snackbar>
     </>
