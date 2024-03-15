@@ -95,7 +95,7 @@ function Wishes() {
           <p >Join us as we embark on a journey of love and joy. Your presence is requested as we celebrate the union of our hearts in matrimony.</p>
         </div>
         <div className="form-group mx-sm-3 mb-1 mt-1 wish">
-        <TextField value={name} onFocus={() => setErrorName(false)} error={errorName} helperText={errorName ? 'The name field is empty' : null} id="outlined-basic" label="Type your name.." variant="outlined" size="small" sx={{ mt: -2}} onChange={(e) => setName(e.target.value)} />
+        <TextField value={name} onFocus={() => setErrorName(false)} error={errorName} helperText={errorName ? 'The name field is empty' : null} id="outlined-basic" label="Type your name.." variant="outlined" size="small" sx={{ mt: -1}} onChange={(e) => setName(e.target.value)} />
           <TextField value={message} onFocus={() => setErrorMsg(false)} error={errorMsg} helperText={errorMsg ? 'The message field is empty' : null} id="outlined-basic" label="Type your greetings.." variant="outlined" size="small" onChange={(e) => setMessage(e.target.value)} />
           <LoadingButton loading={loading} loadingIndicator={<CircularProgress color="info" size={12} role='Sending..' />} className='button' size="small" variant="outlined" color="success" startIcon={<FavoriteIcon />} onClick={handleSubmit} >
             Send
