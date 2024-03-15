@@ -11,7 +11,9 @@ import { LoadingButton } from '@mui/lab';
 
 function Wishes() {
   const [message, setMessage] = useState<string>('');
-  const [error, setError] = useState(false);
+  const [name, setName] = useState<string>('');
+  const [errorMsg, setErrorMsg] = useState(false);
+  const [errorName, setErrorName] = useState(false);
   const [open, setOpen] = useState(false);
   const [loading, setLoading]=useState(false);
   const [mailApiResponse, setMailApiResponse] = useState<boolean>(false);
@@ -36,11 +38,14 @@ function Wishes() {
   const handleSubmit = async (values: any) => {
     values.preventDefault();
     console.log(values);
-    if (message === "") {
-      setError(true)
+    if(name === "") {
+      setErrorName(true)
       // setMailApiResponse(false);
     
-    } else {
+    } else if (message === ""){
+      setErrorMsg(true)
+    }
+    else {
       setLoading(true)
       const response = await fetch('/api/sendMail', {
         method: 'POST',
@@ -48,10 +53,11 @@ function Wishes() {
           'Content-type': 'application/json'
         },
         body: JSON.stringify({
-          message
+          message,name
         })  
       })
 
+      setName('');
       setMessage('');
       const isSuccess = await response.json();
       console.log(isSuccess);
@@ -89,7 +95,8 @@ function Wishes() {
           <p >Join us as we embark on a journey of love and joy. Your presence is requested as we celebrate the union of our hearts in matrimony.</p>
         </div>
         <div className="form-group mx-sm-3 mb-1 mt-1 wish">
-          <TextField value={message} onFocus={() => setError(false)} error={error} helperText={error ? 'The message field is empty' : null} id="outlined-basic" label="Type your greetings.." variant="outlined" size="small" sx={{ mt: -2 }} onChange={(e) => setMessage(e.target.value)} />
+        <TextField value={name} onFocus={() => setErrorName(false)} error={errorName} helperText={errorName ? 'The name field is empty' : null} id="outlined-basic" label="Type your name.." variant="outlined" size="small" sx={{ mt: -2}} onChange={(e) => setName(e.target.value)} />
+          <TextField value={message} onFocus={() => setErrorMsg(false)} error={errorMsg} helperText={errorMsg ? 'The message field is empty' : null} id="outlined-basic" label="Type your greetings.." variant="outlined" size="small" onChange={(e) => setMessage(e.target.value)} />
           <LoadingButton loading={loading} loadingIndicator={<CircularProgress color="info" size={12} role='Sending..' />} className='button' size="small" variant="outlined" color="success" startIcon={<FavoriteIcon />} onClick={handleSubmit} >
             Send
           </LoadingButton>
